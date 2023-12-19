@@ -1,0 +1,1135 @@
+<div class="main-sidemenu container">
+    <div class="slide-left disabled d-none" id="slide-left">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191"
+            width="24" height="24" viewBox="0 0 24 24">
+            <path d="M13.293 6.293 7.586 12l5.707 5.707 1.414-1.414L10.414 12l4.293-4.293z"></path>
+        </svg>
+    </div>
+    <ul class="side-menu flex-nowrap" style="margin-right: 0px; margin-left: 0px;">
+        <li class="slide">
+            <a class="side-menu__item has-link {{ request()->routeIs('erp.home') ? 'active' : '' }}" data-bs-toggle="slide" href="{{ route('erp.home') }}">
+                <i class="side-menu__icon fe fe-home"></i>
+                <span class="side-menu__label">Dashboard</span>
+            </a> 
+        </li>
+        <li class="slide">
+            <a class="side-menu__item {{ Request::get('module') == 'master' || request()->routeIs('erp.master.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fas fa-warehouse"></i>
+                <span class="side-menu__label">Master</span>
+                <i class="angle fe fe-chevron-right"></i></a>
+            <ul class="slide-menu">
+                <li class="side-menu-label1"><a href="javascript:void(0)">Master</a></li>
+                <li>
+                    <a class="slide-item {{ request()->routeIs('erp.master.account.*') ? 'active' : ' ' }}" data-bs-toggle="slide" href="{{ route('erp.master.account.index') }}">
+                        <span class="side-menu__label text-success">Account</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item {{ request()->routeIs('erp.master.account-group.*') ? 'active' : ' ' }}" data-bs-toggle="slide" href="{{ route('erp.master.account-group.index') }}">
+                        <span class="side-menu__label text-success">Group</span>
+                    </a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.master.gst.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">GST</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{Request::get('type') == 'sale_setup' ? 'active' : ''}}" href="{{ route('erp.master.gst.sales-setup.index',  ['type' => 'sale_setup']) }}">Sales Setup</a></li>
+                        <li><a class="text-success sub-slide-item {{Request::get('type') == 'purchase_setup' ? 'active' : '' }}" href="{{ route('erp.master.gst.sales-setup.index', ['type' => 'purchase_setup']) }}">Purchase Setup</a></li>
+                        <li><a class="d-none text-success sub-slide-item {{request()->routeIs('erp.master.gst.jw-out-setup.*') ? 'active' : '' }}" href="{{ route('erp.master.gst.jw-out-setup.index') }}">JW Out Setup</a></li>
+                        <li><a class="d-none text-success sub-slide-item {{request()->routeIs('erp.master.gst.jw-in-setup.*') ? 'active' : '' }}" href="{{ route('erp.master.gst.jw-in-setup.index') }}">JW In Setup</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.master.gst.credit-note-setup.*') ? 'active' : '' }}" href="{{ route('erp.master.gst.credit-note-setup.index') }}">Credit Note With Stock Setup</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.master.gst.debit-note-setup.*') ? 'active' : '' }}" href="{{ route('erp.master.gst.debit-note-setup.index') }}">Debit Note With Stock Setup</a></li>
+                    </ul>
+                </li>
+                <li class="d-none">
+                    <a class="slide-item {{ request()->routeIs('erp.products.*') ? 'active' : ' ' }}"
+                        data-bs-toggle="slide" href="{{ route('erp.products.index') }}">
+                        <span class="side-menu__label">Products</span>
+                    </a>
+                </li>
+                
+                <li class="">
+                    <a class="slide-item {{ request()->routeIs('erp.master.product.*') ? 'active' : ' ' }}"
+                        data-bs-toggle="slide" href="{{ route('erp.master.product.index') }}">
+                        <span class="side-menu__label text-success">Products</span>
+                    </a>
+                </li>
+
+                <li class="d-none">
+                    <a class="slide-item {{ request()->routeIs('erp.master.service.*') ? 'active' : ' ' }}"
+                        data-bs-toggle="slide" href="{{ route('erp.master.service.index') }}">
+                        <span class="side-menu__label">Services</span>
+                    </a>
+                </li>
+                <li class="d-none">
+                    <a class="slide-item {{ request()->routeIs('erp.master.price-list.*') ? 'active' : ' ' }}"
+                        data-bs-toggle="slide" href="{{ route('erp.master.price-list.index') }}">
+                        <span class="side-menu__label">Price List</span>
+                    </a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ (Request::get('module') == 'master') && (request()->routeIs('erp.account-transaction.jobwork-out.*') || request()->routeIs('erp.account-transaction.jobwork-in.*')) ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">Other Info</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li class="d-none">
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_OUT_ORDER_OPENING ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => \App\Enum\Enum::JOBWORK_OUT_ORDER_OPENING, 'module' => 'master']) }}">Jobwork Out Order Opening</a>
+                        </li>
+                        <li class="d-none">
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_OUT_ISSUE_OPENING ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => \App\Enum\Enum::JOBWORK_OUT_ISSUE_OPENING, 'module' => 'master']) }}">Jobwork Out Issue Opening</a>
+                        </li>
+                        <li class="d-none">
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_ORDER_OPENING ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_ORDER_OPENING, 'module' => 'master']) }}">Jobwork In Order Opening</a>
+                        </li>
+                        <li class="d-none">
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_RECEIPT_OPENING ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_RECEIPT_OPENING, 'module' => 'master']) }}">Jobwork In Receipt Opening</a>
+                        </li>
+                        <li class="d-none">
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_PRODUCTION_OPENING ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_PRODUCTION_OPENING, 'module' => 'master']) }}">Jobwork In Production</a>
+                        </li>
+                        <li class="d-none">
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::PHYSICAL_STOCK_VERIFICATION ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => \App\Enum\Enum::PHYSICAL_STOCK_VERIFICATION, 'module' => 'master']) }}">Physical Stock  verification</a>
+                        </li>
+
+                        <li>
+                            <a class="sub-slide-item text-danger" href="#">Opening Stock</a>
+                            <a class="sub-slide-item text-danger" href="#">Product Group</a>
+                            <a class="sub-slide-item text-danger" href="#">Product Category</a>
+                            <a class="sub-slide-item text-danger" href="#">User Master Entry</a>
+                            <a class="sub-slide-item text-danger" href="#">Product Label</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label">Cost Centre</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item {{request()->routeIs('erp.master.cost-centre.cost-category.*') ? 'active' : '' }}" href="{{ route('erp.master.cost-centre.cost-category.index') }}">Cost Category</a></li>
+                        <li><a class="sub-slide-item {{request()->routeIs('erp.master.cost-centre.cost-centre.*') ? 'active' : '' }}" href="{{ route('erp.master.cost-centre.cost-centre.index') }}">Cost Centre</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Multi Currency</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item {{request()->routeIs('erp.master.multi-currency.currency-master.*') ? 'active' : '' }}" href="{{ route('erp.master.multi-currency.currency-master.index') }}">Currency Master</a></li>
+                        <li><a class="sub-slide-item {{request()->routeIs('erp.master.multi-currency.rate-exchange-master.*') ? 'active' : '' }}" href="{{ route('erp.master.multi-currency.rate-exchange-master.index') }}">Rate Exchange Master</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label text-danger">Change Year</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label text-danger">Change Company</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Transaction menu -->
+        <li class="slide">
+            <a class="side-menu__item {{ !Request::get('module') && request()->routeIs('erp.account-transaction.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa fa-university"></i>
+                <span class="side-menu__label">Transactions</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu {{ !Request::get('module') && request()->routeIs('erp.account-transaction.*') ? 'open' : ''}}">
+                <li class="side-menu-label1">
+                    <a href="javascript:void(0)">Transactions</a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ !Request::get('module') && request()->routeIs('erp.account-transaction.cash-bank-entry.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">Cash/Bank Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cash-bank-entry.bank-payment.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cash-bank-entry.bank-payment.index') }}">Bank Payment</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cash-bank-entry.bank-receipt.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cash-bank-entry.bank-receipt.index') }}">Bank Receipt</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cash-bank-entry.cash-payment.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cash-bank-entry.cash-payment.index') }}">Cash Payment</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cash-bank-entry.cash-receipt.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cash-bank-entry.cash-receipt.index') }}">Cash Receipt</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cash-bank-entry.contra.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cash-bank-entry.contra.index') }}">Contra</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.account-transaction.quick-entry.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">Quick Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="text-success sub-slide-item {{ request()->routeIs('erp.account-transaction.quick-entry.cash-bank-entry.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.quick-entry.cash-bank-entry.index') }}">Cash/Bank</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{ request()->routeIs('erp.account-transaction.quick-entry.journal-entry.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.quick-entry.journal-entry.index') }}">Journal</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label">(TD) APMC Entry</span>
+                    </a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.account-transaction.journal-entry.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">Journal Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[0] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[0]]) }}">Bank Payment</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[1] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[1]]) }}">Bank Receipt</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[2] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[2]]) }}">Cash Payment</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[3] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[3]]) }}">Cash Receipt</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[4] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[4]]) }}">Contra</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[5] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[5]]) }}">Creadit Note</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[6] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[6]]) }}">Debit Note</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('vouType') == \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[7] ? 'active' : '' }}" href="{{ route('erp.account-transaction.journal-entry.index', ['vouType' => \App\Enum\Enum::JOURNAL_ENTRY_VOU_TYPE[7]]) }}">Journal</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.account-transaction.cn-dn-entry.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">CN/DN Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cn-dn-entry.cn-entry-with-out-stock.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cn-dn-entry.cn-entry-with-out-stock.index') }}">CN Entry w/o Stock</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cn-dn-entry.dn-entry-with-out-stock.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cn-dn-entry.dn-entry-with-out-stock.index') }}">DN Entry w/o Stock</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cn-dn-entry.cn-entry-with-stock.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cn-dn-entry.cn-entry-with-stock.index') }}">CN Entry with Stock</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{request()->routeIs('erp.account-transaction.cn-dn-entry.dn-entry-with-stock.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.cn-dn-entry.dn-entry-with-stock.index') }}">DN Entry with Stock</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.account-transaction.purchase-entry.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">Purchase Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('type') == \App\Enum\Enum::PURCHASE_INVOICE ? 'active' : '' }}" href="{{ route('erp.account-transaction.purchase-entry.index', ['type' => \App\Enum\Enum::PURCHASE_INVOICE]) }}">Purchase Invoice</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('type') == \App\Enum\Enum::PURCHASE_RETURN ? 'active' : '' }}" href="{{ route('erp.account-transaction.purchase-entry.index', ['type' => \App\Enum\Enum::PURCHASE_RETURN]) }}">Purchase Return</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('type') == \App\Enum\Enum::CHEQUE_FROM_PURCHASE ? 'active' : '' }}" href="javascrit:void(0)">Cheque from Purchase</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.account-transaction.sale-entry.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">Sale Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('type') == \App\Enum\Enum::SALES_INVOICE ? 'active' : '' }}" href="{{ route('erp.account-transaction.sale-entry.index', ['type' => \App\Enum\Enum::SALES_INVOICE]) }}">Sales Invoice</a>
+                        </li>
+                        <li>
+                            <a class="text-success sub-slide-item {{Request::get('type') == \App\Enum\Enum::SALES_RETURN ? 'active' : '' }}" href="{{ route('erp.account-transaction.sale-entry.index', ['type' => \App\Enum\Enum::SALES_RETURN]) }}">Sales Return</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide {{ $jobwork_out == 1 ? '' : 'd-none'}}">
+                    <a class="sub-side-menu__item {{!Request::get('module') && request()->routeIs('erp.account-transaction.jobwork-out.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label">Jobwork Out</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_OUT_ORDER && request()->routeIs('erp.account-transaction.jobwork-out.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => \App\Enum\Enum::JOBWORK_OUT_ORDER]) }}">Jobwork Order</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_OUT_ISSUE && request()->routeIs('erp.account-transaction.jobwork-out.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => 'issue']) }}">Jobwork Issue</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_OUT_RECEIPT && request()->routeIs('erp.account-transaction.jobwork-out.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => 'receipt']) }}">Jobwork Receipt</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_OUT_BILLING && request()->routeIs('erp.account-transaction.jobwork-out.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-out.index', ['type' => 'billing']) }}">Jobwork Billing</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide {{ $jobwork_in == 1 ? '' : 'd-none'}}">
+                    <a class="sub-side-menu__item {{!Request::get('module') && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label">
+                        Jobwork In</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_ORDER && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_ORDER]) }}">Jobwork Order</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_RECEIPT && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_RECEIPT]) }}">Jobwork Receipt</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_PRODUCTION && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_PRODUCTION]) }}">Jobwork Production</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_ISSUE && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_ISSUE]) }}">Jobwork Issue</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_ISSUE_OTHER && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_ISSUE_OTHER]) }}">Jobwork Issue (Other)</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item" href="#">Jobwork Auto Biling</a>
+                        </li>
+                        <li>
+                            <a class="sub-slide-item {{Request::get('type') == \App\Enum\Enum::JOBWORK_IN_BILLING && request()->routeIs('erp.account-transaction.jobwork-in.*') ? 'active' : '' }}" href="{{ route('erp.account-transaction.jobwork-in.index', ['type' => \App\Enum\Enum::JOBWORK_IN_BILLING]) }}">Jobwork Biling</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.account-transaction.forex-adjustment.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="{{ route('erp.account-transaction.forex-adjustment.index') }}">
+                        <span class="sub-side-menu__label">Forex Adjustment</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Consulatant -->
+        <li class="slide d-none">
+            <a class="side-menu__item {{request()->routeIs('erp.consultant.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fe fe-cpu"></i>
+                <span class="side-menu__label">Consultant</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li class="side-menu-label1"><a href="javascript:void(0)">Consultant</a></li>
+                <li><a href="{{ route('erp.consultant.provisional-invoice.index') }}" class="slide-item {{request()->routeIs('erp.consultant.provisional-invoice.*') ? 'active' : '' }}">Provisional Invoice</a></li>
+                <li><a href="{{ route('erp.consultant.final-invoice.index') }}" class="slide-item {{request()->routeIs('erp.consultant.final-invoice.*') ? 'active' : '' }}"> (F)Final Invoice</a></li>
+                <li><a href="{{ route('erp.consultant.bill-from-prov.filter') }}" class="slide-item {{request()->routeIs('erp.consultant.bill-from-prov.*') ? 'active' : '' }}">(F)Bill from Prov. Vou </a></li>
+
+                {{-- Changes made by khimaji --}}
+                <li><a href="{{ route('erp.consultant.direct-invoice.index') }}" class="slide-item {{request()->routeIs('erp.consultant.direct-invoice.*') ? 'active' : '' }}">Direct Invoice</a></li>
+                <li><a href="{{ route('erp.consultant.bank-receipt.index') }}" class="slide-item {{request()->routeIs('erp.consultant.bank-receipt.*') ? 'active' : '' }}">Bank Receipt</a></li>
+                <li><a href="{{ route('erp.consultant.cash-receipt.index') }}" class="slide-item {{request()->routeIs('erp.consultant.cash-receipt.*') ? 'active' : '' }}">Cash Receipt</a></li>
+
+                <li><a href="{{ route('erp.consultant.provisional-outstanding.index') }}" class="slide-item {{request()->routeIs('erp.consultant.provisional-outstanding.*') ? 'active' : '' }}">(F)Provisional Outstanding</a></li>
+                <li><a href="{{ route('erp.consultant.pending-invoice.index') }}" class="slide-item {{request()->routeIs('erp.consultant.pending-invoice.*') ? 'active' : '' }}">(F)Pending Invoice</a></li>
+            </ul>
+        </li>
+
+
+        {{-- GST START --}}
+        <li class="slide">
+            <a class="side-menu__item {{ request()->routeIs('erp.gst.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa fa-money"></i>
+                <span class="side-menu__label">GST</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu {{request()->routeIs('erp.gst.*') ? 'open' : ''}}">
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.gst.slab.*') || request()->routeIs('erp.gst.gst-commodity.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-success">GST Master</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.slab.*') ? 'active' : '' }}" href="{{ route('erp.gst.slab.index') }}">GST Slab</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.gst-commodity.*') ? 'active' : '' }}" href="{{route('erp.gst.gst-commodity.index') }}">GST Commodity</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide {{ request()->routeIs('erp.gst.gst-entry.*') ? 'is-expanded' : '' }}">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">GST Entry</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.gst-entry.bank-payment.*') ? 'active' : '' }}" href="{{route('erp.gst.gst-entry.bank-payment.index') }}">Bank Payment</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.gst-entry.cash-payment.*') ? 'active' : '' }}" href="{{route('erp.gst.gst-entry.cash-payment.index') }}">Cash Payment</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.gst-entry.utilization-entry.*') ? 'active' : '' }}" href="{{route('erp.gst.gst-entry.utilization-entry.index') }}">Utilization Entry</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.gst-entry.journal-entry.*') ? 'active' : '' }}" href="{{route('erp.gst.gst-entry.journal-entry.index') }}">Journal Entry</a></li>
+                    </ul>
+                </li>
+                
+                <li class="sub-slide {{ request()->routeIs('erp.gst.rcm.*') ? 'is-expanded' : ''}}">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.gst.rcm.*')}}" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-success">RCM Voucher</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.rcm.bank-payment.*') ? 'active' : '' }}" href="{{ route('erp.gst.rcm.bank-payment.index') }}">RCM Bank Payment</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.rcm.cash-payment.*') ? 'active' : '' }}" href="{{ route('erp.gst.rcm.cash-payment.index') }}">RCM Cash Payment</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="slide-item {{request()->routeIs('erp.gst.gst-expense.*') ? 'active' : '' }}" data-bs-toggle="slide" href="{{ route('erp.gst.gst-expense.index') }}">
+                        <span class="side-menu__label text-success">GST Expense</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item {{request()->routeIs('erp.gst.gst-income.*') ? 'active' : '' }}" data-bs-toggle="slide" href="{{ route('erp.gst.gst-income.index') }}">
+                        <span class="side-menu__label text-success">GST Income</span>
+                    </a>
+                </li>
+                
+                <li class="sub-slide {{ request()->routeIs('erp.gst.gst-report.*') ? 'is-expanded' : ''}}">
+                    <a class="sub-side-menu__item {{ request()->routeIs('erp.gst.gst-report.*') ? 'active' : ''}}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">GST Report</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                      <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-report.summary-section-wise.*') ? 'active' : '' }}"
+                              href="{{ route('erp.gst.gst-report.summary-section-wise.index') }}">Summary (Sectionwise)</a></li>
+                      <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-report.percentage-wise.*') ? 'active' : '' }}"
+                              href="{{ route('erp.gst.gst-report.percentage-wise.index') }}">Percentage wise</a></li>
+                      <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-report.account-wise.*') ? 'active' : '' }}"
+                              href="{{ route('erp.gst.gst-report.account-wise.index') }}">Account wise</a></li>
+                      <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-report.hsn-wise-summary.*') ? 'active' : '' }}"
+                              href="{{ route('erp.gst.gst-report.hsn-wise-summary.index') }}">HSN wise summary</a></li>
+                      <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-report.registration-type-wise.*') ? 'active' : '' }}"
+                              href="{{ route('erp.gst.gst-report.registration-type-wise.index') }}">Registration Type wise</a></li>
+                      <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-report.expense-audit.*') ? 'active' : '' }}"
+                              href="{{ route('erp.gst.gst-report.expense-audit.index') }}">Expense Audit</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide {{ request()->routeIs('erp.gst.rcm-report.*') ? 'is-expanded' : ''}}">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">RCM Report</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.rcm-report.date-wise.*') ? 'active' : '' }}" href="{{ route('erp.gst.rcm-report.date-wise.index') }}">Date Wise Summary</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.gst.rcm-report.account-wise.*') ? 'active' : '' }}" href="{{ route('erp.gst.rcm-report.account-wise.index') }}">A/C Wise Summary</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.rcm-report.notified-rcm.*') ? 'active' : '' }}" href="{{ route('erp.gst.rcm-report.notified-rcm.index') }}">Notified RCM</a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-slide {{ request()->routeIs('erp.gst.gst-register.*') ? 'is-expanded' : ''}}">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.gst.gst-register.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">GST Register</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.tax-liability-register.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.tax-liability-register.index') }}">Tax Liability Register</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.cash-ledger.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.cash-ledger.index') }}">Cash Ledger</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.itc-register.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.itc-register.index') }}">ITC Register</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.gst-outward-register.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.gst-outward-register.index') }}">GST Outward Register</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.gst-inward-register.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.gst-inward-register.index') }}">GST Inward Register</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.gst-expense-register.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.gst-expense-register.index') }}">GST Expense Register</a></li>                        
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gst-register.gst-income-register.*') ? 'active' : '' }}" href="{{ route('erp.gst.gst-register.gst-income-register.index') }}">(F)GST Income Register</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="slide-item {{request()->routeIs('erp.gst.gst-pymt-assist.*') ? 'active' : '' }}" data-bs-toggle="slide" href="{{route('erp.gst.gst-pymt-assist.index')}}">
+                        <span class="side-menu__label text-danger">GST Pymt. Assist</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item {{ request()->routeIs('erp.gst.gstr-2-b-match.*') ? 'active' : ''}}" data-bs-toggle="slide" href="{{ route('erp.gst.gstr-2-b-match.index') }}">
+                        <span class="side-menu__label text-danger">GSTR 2B Match</span>
+                    </a>
+                </li>
+                <li class="sub-slide {{request()->routeIs('erp.gst.gstr-return.*') ? 'is-expanded' : ''}}">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.gst.gstr-return.*') ? 'active' : ''}}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">GST Return</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-3-b-as-per-books.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-3-b-as-per-books.index')}}">GSTR 3B (as per books)</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-3-b-as-per-gstr-2-b.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-3-b-as-per-gstr-2-b.index')}}">GSTR 3B (as per GSTR 2B)</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-1.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-1.index')}}">GSTR 1</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-1-hsn-summary.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-1-hsn-summary.index')}}">GSTR 1 HSN Summary</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-2.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-2.index')}}">GSTR 2</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-2-hsn-summary.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-2-hsn-summary.index')}}">GSTR 2 HSN Summary</a></li>                        
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.gstr-9.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.gstr-9.index')}}">GSTR-9</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-return.itc-04.*') ? 'active' : ''}}" href="{{route('erp.gst.gstr-return.itc-04.index')}}">ITC-04</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.gst.gstr-integrity.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">GSTR Integrity</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-integrity.tax-liability.*') ? 'active' : '' }}" href="{{ route('erp.gst.gstr-integrity.tax-liability.index') }}">Tax Liability</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.gst.gstr-integrity.itc.*') ? 'active' : '' }}" href="{{ route('erp.gst.gstr-integrity.itc.index') }}">ITC</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-danger">GST Audit</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item" href="{{route('erp.gst.gst-audit.gstr-1-b2b-summary.index')}}">GSTR 1 B2B Summary</a></li>
+                        <li><a class="text-danger sub-slide-item" href="{{route('erp.gst.gst-audit.gstr-2-b2b-summary.index')}}">GSTR 2 B2B Summary</a></li>
+                        <li><a class="text-danger sub-slide-item" href="{{route('erp.gst.gst-audit.gstr-2a-match.index')}}">GSTR 2A Match</a></li>
+                        <li><a class="text-danger sub-slide-item" href="{{route('erp.gst.gst-audit.itc-As-per-gstr-2b.index')}}">ITC As per GSTR 2B</a></li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a class="slide-item {{ request()->routeIs('erp.gst.e-way-bill.*') ? 'active' : '' }}" data-bs-toggle="slide" href="{{route('erp.gst.e-way-bill.index')}}">
+                        <span class="side-menu__label text-danger">E-Way Bill</span>
+                    </a>
+                </li>
+            </ul>
+        <li>
+        {{-- GST END --}}
+
+        <!-- Report Menu -->
+        <li class="slide">
+            <a class="side-menu__item {{request()->routeIs('erp.report.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa fa-file-text"></i>
+                <span class="side-menu__label">Report</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.report.account-book.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Account Books</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.report.account-book.ledger.*') ? 'active' : '' }}" href="{{ route('erp.report.account-book.ledger.index') }}">Ledger</a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.account-book.voucher-list.*') ? 'active' : '' }}" href="{{ route('erp.report.account-book.voucher-list.index') }}">Voucher List </a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.report.account-book.day-book.*') ? 'active' : '' }}" href="{{ route('erp.report.account-book.day-book.index') }}">Day Book</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.report.account-book.cash-book.*') ? 'active' : '' }}" href="{{ route('erp.report.account-book.cash-book.index') }}">Cash Book</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.report.account-book.bank-book.*') ? 'active' : '' }}" href="{{ route('erp.report.account-book.bank-book.index') }}">Bank Book </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.report.outstanding.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Outstanding</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.outstanding.receivable.*') ? 'active' : '' }}" href="{{ route('erp.report.outstanding.receivable.index') }}">Receivable </a></li>
+
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.outstanding.payable.*') ? 'active' : '' }}" href="{{ route('erp.report.outstanding.payable.index') }}">Payable</a></li>
+                        <li class="d-none"><a class="sub-slide-item {{request()->routeIs('erp.report.outstanding.billwise-receivable.*') ? 'active' : '' }}" href="{{ route('erp.report.outstanding.billwise-receivable.index') }}">Billwise Receivable</a></li>
+                        <li class="d-none"><a class="sub-slide-item {{request()->routeIs('erp.report.outstanding.billwise-payable.*') ? 'active' : '' }}" href="{{ route('erp.report.outstanding.billwise-payable.index') }}">Biliwise Payable</a></li>
+                    </ul>
+                </li>
+                
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.report.register.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Register</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.register.sales-register.*') ? 'active' : '' }}" href="{{ route('erp.report.register.sales-register.index') }}">Sales Register </a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.register.parchase-register.*') ? 'active' : '' }}" href="{{ route('erp.report.register.parchase-register.index') }}">Purchase Register </a></li>
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.register.credit-note-with-stock-register.*') ? 'active' : '' }}" href="{{ route('erp.report.register.credit-note-with-stock-register.index') }}">Credit Note With Stock Register </a></li>
+
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.register.debit-note-with-stock-register.*') ? 'active' : '' }}" href="{{ route('erp.report.register.debit-note-with-stock-register.index') }}">Debit Note With Stock Register </a></li>
+
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.register.credit-note-w_o-stock-register.*') ? 'active' : '' }}" href="{{ route('erp.report.register.credit-note-w_o-stock-register.index') }}">Credit Note W/O Stock Register </a></li>
+                        
+                        <li><a class="text-danger sub-slide-item {{request()->routeIs('erp.report.register.debit-note-w_o-stock-register.*') ? 'active' : '' }}" href="{{ route('erp.report.register.debit-note-w_o-stock-register.index') }}">Debit Note W/O Stock Register </a></li>
+                    </ul>
+                </li>
+                
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Balance Sheet</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Trial Balance </a></li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Trading Account </a></li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) P&L Statement </a></li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Balance Sheet </a></li>
+                        <li class="d-none"><a class="sub-slide-item" href="javascript:void(0)">(TD) Multi Trading A/C. </a></li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Trading + P & L </a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Analysis Report</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Daily Status </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Performance Report </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Sale/Purchase Report </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Partywise Report </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Account Analysis </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Fund Flow </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Cash Flow </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Multi Currency</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) A/C. NameWise Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) A/C. Billwise Detail Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Multi Currency Receivable Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Multi Currency Payable Report </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Stock Report</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Product Ledger</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Partywise Report</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Jobwork Out</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Status Report (Wide) </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work Out Stock Statement </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work Out Order Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work Out Bill Register </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Jobwork In</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Status Report (Wide) </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work In Pending Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work In Stock Statement </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work In Order Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work In Bill Reg. (Issue Details) </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Job Work In Bill Register </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Cost Center</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Cost Center Wise Summary </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Cost Category Wise Summary </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Category Center Summary </a></li>
+                    </ul>
+                </li>
+                
+
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Other Reports</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Interest Report </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) SMS Report </a></li>
+                        <li class="sub-slide2">
+                            <a class="sub-side-menu__item2" href="javascript:void(0)"
+                                data-bs-toggle="sub-slide2"><span
+                                    class="sub-side-menu__label2 text-danger">(TD) E-Mail Report</span><i
+                                    class="sub-angle2 fe fe-chevron-right"></i></a>
+                            <ul class="sub-slide-menu2">
+                                <li><a href="javascript:void(0)" class="text-danger sub-slide-item2">(TD) Profile E-Mail </a></li>
+                                <li><a href="javascript:void(0)" class="text-danger sub-slide-item2">(TD) Other E-Mail </a></li>
+                            </ul>
+                        </li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Template List </a></li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Missing Vou No Report </a></li>
+                        <li><a class="text-danger sub-slide-item" href="javascript:void(0)">(TD) Cancel Voucher Report </a></li>
+                    </ul>
+                </li>
+            </ul>
+        <li>
+
+        <!-- Utility -->
+        <li class="slide {{ request()->routeIs('erp.utility.*') ? 'is-expanded' : '' }}"> 
+            <a class="side-menu__item {{ request()->routeIs('erp.utility.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa-solid fa-screwdriver-wrench"></i>
+                <span class="side-menu__label">Utility</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu {{request()->routeIs('erp.utility.*') ? 'open' : ''}}">
+                <li class="side-menu-label1">
+                    <a href="javascript:void(0)">Utility</a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">System Utility</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Backup </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Indexing </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Reposting </a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a class="sub-slide-item text-danger" href="#">(TD) Voucher Import</a>
+                </li>
+
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Data Freeze</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Data Freeze </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Data Unfreeze </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) GST Data Freeze </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) GST Data Unfreeze </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Advance Utility</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Account Merge </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Product Merge </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Data Delete </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Voucher Renumber </a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Data Utility</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Data Export </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Data Import </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Fin. Year Delete </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Havala</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Capital </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Depreciation </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Interest </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Havala Setup </a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">Year End</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Update Balance </a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) New Fin. Year </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item {{request()->routeIs('erp.utility.personal-diary.*') ? 'active' : '' }}" data-bs-toggle="sub-slide" href="javascript:void(0)">
+                        <span class="sub-side-menu__label text-success">Personal Diary</span>
+                        <i class="sub-angle fe fe-chevron-right"></i>
+                    </a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.utility.personal-diary.address-book.*') ? 'active' : '' }}" href="{{ route('erp.utility.personal-diary.address-book.index') }}">Address Book</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.utility.personal-diary.mailing-letter.*') ? 'active' : '' }}" href="{{ route('erp.utility.personal-diary.mailing-letter.index') }}">Mailing Letter</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.utility.personal-diary.reminder.*') ? 'active' : '' }}" href="{{ route('erp.utility.personal-diary.reminder.index') }}">Reminder</a></li>
+                        <li><a class="text-success sub-slide-item {{request()->routeIs('erp.utility.personal-diary.calender-diary.*') ? 'active' : '' }}" href="{{ route('erp.utility.personal-diary.calender-diary.index') }}">Calendar/Diary</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+
+        <!-- Setup -->
+        <li class="slide {{ request()->routeIs('erp.utility.*') ? 'is-expanded' : '' }}">
+            <a class="side-menu__item {{ request()->routeIs('erp.utility.*') ? 'active' : '' }}" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa fa-stack-overflow"></i>
+                <span class="side-menu__label">Setup</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu {{request()->routeIs('erp.utility.*') ? 'open' : ''}}">
+                <li class="side-menu-label1">
+                    <a href="javascript:void(0)">Setup</a>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="{{ route('erp.setting.company-setup') }}">
+                        <span class="side-menu__label text-success">Company Setup</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="{{ route('erp.setting.voucher-setup') }}">
+                        <span class="side-menu__label text-success">Voucher Setup</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label text-danger">Voucher Number</span>
+                    </a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-success">Sales Setup</span><i class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-success" href="{{ route('erp.setting.sales-setup.expense-details') }}">Expense Details</a></li>
+                        <li><a class="sub-slide-item text-success" href="{{ route('erp.setting.sales-setup.invoice-type') }}">Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-success">Purchase Setup</span><i class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-success" href="{{ route('erp.setting.purchase-setup.expense-details') }}">Expense Details</a></li>
+                        <li><a class="sub-slide-item text-success" href="{{ route('erp.setting.purchase-setup.invoice-type') }}">Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">(TD) Consultant Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Details</a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">(TD) Jobwork Out Billing</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Details</a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide d-none">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">(TD) Jobwork In Billing</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Details</a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">(TD) Credit Note Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Expense Details</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">(TD) Debit Note Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Expense Details</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Invoice Type</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">(TD) Advance Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Macro Setting</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) User Field</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Auto Number</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) User Master</a></li>
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Equation</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label text-danger">(TD) Security</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item text-danger" href="javascript:void(0)">(TD) Menu Option</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label text-danger">Software Setup</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label text-danger">Voucher Format</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <!-- End Setup -->
+
+        <!-- Setting -->
+        <li class="slide d-none">
+            <a class="side-menu__item {{ request()->routeIs('erp.setting.*') ? 'active' : ' ' }}" data-bs-toggle="slide" href="{{ route('erp.setting.home') }}"><i class="side-menu__icon fa fa-cog"></i><span class="side-menu__label">(TD) Setup</span></a>
+        </li>
+
+        <!-- setup -->
+        <li class="slide d-none">
+            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa fa-cog"></i>
+                <span class="side-menu__label">Settings</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu">
+                
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="{{ route('erp.setting.company-setup') }}">
+                        <span class="side-menu__label">(TD) Company Setup</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="{{ route('erp.setting.voucher-setup') }}">
+                        <span class="side-menu__label">(TD) Voucher Setup</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label">(TD) Voucher Number</span>
+                    </a>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Consultant Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Details </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Share Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Detail</a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Jobwork Out  Billing</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Detail </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Jobwork In  Billing</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Detail </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Credit Note Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Detail </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Debit Note Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Expense Detail </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice Type </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Advance Setup</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Macro Setting </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Equation </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Security</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Menu Option </a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label">(TD) Shoftware Setup</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="slide-item" data-bs-toggle="slide" href="#">
+                        <span class="side-menu__label">(TD) Voucher Format</span>
+                    </a>
+                </li>
+            </ul>
+        <li>
+
+        <!-- Share -->
+        <li class="slide d-none">
+            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fas fa-share"></i>
+                <span class="side-menu__label">Share</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Share Entry</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Invoice </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) IPO </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Split </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Bonus </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Merge/DeMerge </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Capital Gains</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Detail Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Summary Report </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Stock Statement</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Statement </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Trading Stock Statement </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Other Reports</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Turn Over Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Brokerage/STT Summary </a></li>
+                    </ul>
+                </li>
+
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Mutual Fund (Equit)</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Detail Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Summary Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Statement </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Mutual Fund (Debt)</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Detail Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Summary Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Statemet </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">F&O Report</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Detail Report</a></li>
+
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) F&O Position </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Commodity Reports</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Stock Detail Report </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Commodity Position </a></li>
+                    </ul>
+                </li>
+                <li class="sub-slide">
+                    <a class="sub-side-menu__item" data-bs-toggle="sub-slide" href="javascript:void(0)"><span
+                            class="sub-side-menu__label">Share Register</span><i
+                            class="sub-angle fe fe-chevron-right"></i></a>
+                    <ul class="sub-slide-menu">
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) F&O Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Commodity Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Investment Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Mutual Fund Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Trading Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) IPO Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Bonus Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Split Register </a></li>
+                        <li><a class="sub-slide-item" href="javascript:void(0)">(TD) Merge/Demerge Register </a></li>
+                    </ul>
+                </li>
+            </ul>
+        <li>
+
+
+        <!-- Exit -->
+        <li class="slide">
+            <a class="side-menu__item" data-bs-toggle="slide" href="javascript:void(0)">
+                <i class="side-menu__icon fa fa-window-close" aria-hidden="true"></i>
+                <span class="side-menu__label">Exit</span>
+                <i class="angle fe fe-chevron-right"></i>
+            </a>
+            <ul class="slide-menu">
+                <li><a href="javascript:void(0)" class="slide-item text-danger">(TD) Exit </a></li>
+                <li><a href="javascript:void(0)" class="slide-item text-danger">(TD) About Us </a></li>
+                <li><a href="javascript:void(0)" class="slide-item text-danger">(TD) F9-Calculator </a></li>
+                <li><a href="javascript:void(0)" class="slide-item text-danger">(TD) Hot-key Help </a></li>
+            </ul>
+        </li>
+    </ul>
+    <div class="slide-right" id="slide-right">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#7b8191" width="24"
+            height="24" viewBox="0 0 24 24">
+            <path d="M10.707 17.707 16.414 12l-5.707-5.707-1.414 1.414L13.586 12l-4.293 4.293z"></path>
+        </svg>
+    </div>
+</div>
+<div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+    <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+</div>
+<div class="ps__rail-y" style="top: 0px; height: 56px; right: 0px;">
+    <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+</div>
